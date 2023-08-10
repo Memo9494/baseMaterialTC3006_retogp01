@@ -18,6 +18,7 @@ Se tomaron decisiones de limpieza, como eliminar las variables de ID, Nombre, Pa
 
 ```python
 data_titanic = data_titanic.drop(columns=['PassengerId', 'Name', 'SibSp', 'Parch', 'Ticket', 'Cabin'])
+```
 
 Después, decidimos cambiar las variables de sexo a ceros y unos, debido a que por naturaleza el sexo es binario, y nos fué más práctico para realizar el análizis debido a que es más fácil trabajar con ints que con strings, además decidimos reemplazar la variable “Embarked”, de ‘S’, ‘C’ Y ‘Q’ a 0,1,2 respectivamente.
 
