@@ -1,25 +1,20 @@
-Fecha de entrega: 14 de agosto de 2023
-Introducción
+# Análisis de la Base de Datos del Titanic
 
-	El reto del curso consiste en la utilización del método CRISP-DM (Cross Industry Standard Process for Data Mining) para generar una solución que integre ciencia de datos e inteligencia artificial utilizando herramientas computacionales de vanguardia. Esto implica la obtención de una base de datos confiable que nos permita hacer un análisis de los mismos, con la finalidad de predecir una variable. En nuestro caso, nos encontramos con el reto de predecir sí una persona que atendió al titanic sobrevivió o no. 
+## Introducción
 
-Etapa 1, Comprensión del negocio: 
+El reto del curso consiste en la utilización del método CRISP-DM (Cross Industry Standard Process for Data Mining) para generar una solución que integre ciencia de datos e inteligencia artificial utilizando herramientas computacionales de vanguardia. El objetivo es obtener una base de datos confiable que permita analizar y predecir una variable. En este caso, se aborda el reto de predecir si una persona que estuvo a bordo del Titanic sobrevivió o no.
 
-Lo primero que realizamos para empezar a solucionar nuestro problema, fue el identificar el problema, así como los requerimientos que tiene el reto y herramientas que utilizaremos para completar los requerimientos.
+## Etapa 1: Comprensión del Negocio
 
-En primera instancia fue necesario descargar la base de datos de los pasajeros del titanic con varias características, como lo es nombre, número de ticket, sexo, edad, etc.
+Para abordar el problema, se comenzó identificando el desafío, los requisitos y las herramientas necesarias. Se descargó una base de datos de pasajeros del Titanic con diversas características, como nombre, número de ticket, sexo, edad, entre otros. Se eligió Python como lenguaje de programación, utilizando Google Colab para aprovechar las capacidades de matemáticas e inteligencia artificial. 
 
-Lo segundo fue utilizar una plataforma que nos permita utilizar herramientas de matemáticas, así como inteligencia artificial para darnos una mejor oportunidad de resolver el problema, así como poder trabajar en conjunto. Para esto decidimos utilizar el lenguaje de programación Python, el cuál desarrollamos en la plataforma de Google Collab, por medio de un tipo de archivo llamado JUPITER NOTEBOOK.
+La primera fase para predecir la supervivencia de los pasajeros del Titanic implicó limpiar la base de datos, eliminando variables irrelevantes para el análisis de sobrevivencia, como ID, Nombre, Parch, Ticket y cabina.
 
-También identificamos que el primer paso para generar una predicción del deceso o sobrevivencia de los pasajeros del titanic es la limpieza de la base de datos de los pasajeros del titanic, esto debido a que tenemos variables que no nos aportan información útil acerca del evento que fué lo que ocasionó la muerte de muchos (En específico quién entró a las barcas de emergencia y quién no).
+## Limpieza de Datos
 
-Limpieza de datos
+Para realizar un análisis efectivo y una limpieza adecuada de los datos, se utilizaron las siguientes librerías de Python: Pandas, Numpy y Matplotlib.
 
-	Para realizar el análisis de los datos de forma eficaz y llegar a una limpieza pertinente de los mismos se recurrió a las librerías de Python: Pandas, Numpy, Matplotlib.
+Se tomaron decisiones de limpieza, como eliminar las variables de ID, Nombre, Parch, Ticket y Cabina, ya que se consideraron no relevantes para el análisis de supervivencia en situaciones de emergencia.
 
-Las decisiones acerca de la limpieza:
-
-
-
-Conclusión 
-
+```python
+data_titanic = data_titanic.drop(columns=['PassengerId', 'Name', 'SibSp', 'Parch', 'Ticket', 'Cabin'])
