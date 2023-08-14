@@ -10,15 +10,10 @@ The root folder of this repository contains the following files and folders:
   * final: Folder with the information about the final deliverables, which include the changes that the reviewers asked for
   * retro: Folder with the information about the draft version of each deliverable, which are provided for requesting feedback, Inside retro there is a foder called retro LimpiezaDatos which contains the progress made in the first week of classes which is the cleaning of the data and some statistic analyzis.
 
-
 ## Files for revision
 Following is a list of the files that must be checked for grading each subcompetency: 
 * *retro*
 	* *reto_limpiezaDatos*
-		* Justification related to the changes and desicions made over the dataset:  retro/reto_limpieza/README.md
-		* Code for the cleancing of the dataset and some statistical analizys:  retro/reto_limpieza/AI1.ipynb
-		* Dataset of the deaths in the titanic event :  retro/reto_limpieza/data_titanic.csv
-
-
-
-See you!
+		* README.md : Justification related to the changes and desicions made over the dataset.  
+		* AI1.ipynb : Code for the cleancing of the dataset and some statistical analizys.  
+		* data_titanic.csv : Dataset of the deaths in the titanic event.
