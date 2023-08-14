@@ -15,9 +15,9 @@ The root folder of this repository contains the following files and folders:
 Following is a list of the files that must be checked for grading each subcompetency: 
 * *retro*
 	* *reto_limpiezaDatos*
-		* *Justification related to the changes and desicions made over the dataset:  retro/reto_limpieza/README.md**
-		* **Code for the cleancing of the dataset and some statistical analizys:  retro/reto_limpieza/AI1.ipynb**
-		* **Dataset of the deaths in the titanic event :  retro/reto_limpieza/data_titanic.csv**
+		* Justification related to the changes and desicions made over the dataset:  retro/reto_limpieza/README.md
+		* Code for the cleancing of the dataset and some statistical analizys:  retro/reto_limpieza/AI1.ipynb
+		* Dataset of the deaths in the titanic event :  retro/reto_limpieza/data_titanic.csv
 
 
 
