@@ -1,6 +1,12 @@
 # Repository for the TC3006 course - Team 1
 This repository is a documentation of the work made by team 1 of the 2023 Agust-December TC3006 course at Tecnológico de Monterrey. For this demo, we consider the *implementation portfolio* deliverable, which spans across two modules (Statistics and ML) and two subcompetencies (SMA0101A and SMA0401A). Also, we assume that the repository is being provided at the end of first block, which means that the students already got some feedback from the professors. 
 
+## Team 1
+  * Frida Cano Falcón - A01752953
+  * Jorge Javier Sosa Briseño - A01749489
+  * Guillermo Romeo Cepeda Medina - A01284015
+  * Daniel Saldaña Rodríguez - A00829752
+ 
 ## Structure of this repository
 The root folder of this repository contains the following files and folders: 
 
