@@ -22,4 +22,4 @@ Following is a list of the files that must be checked for grading each subcompet
 	* *reto_limpiezaDatos*
 		* README.md : Justification related to the changes and desicions made over the dataset.  
 		* AI1.ipynb : Code for the cleancing of the dataset and some statistical analizys.  
-		* data_titanic.csv : Dataset of the deaths in the titanic event.
+		* data_titanic.csv : Dataset of the passengers on board the Titanic.
