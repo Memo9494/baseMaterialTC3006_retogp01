@@ -9,95 +9,53 @@ Entre estos modelos, se tiene la intención de seleccionar sólo tres modelos, p
 
 ## Etapa 1: Investigación de modelos
 
-Se importan las librerías para implementar los modelos
+La continuación del proyecto viene después de la limpieza de datos que se realizó en el entregable pasado, el siguiente paso fue investigar los modelos de predicción que nos interesan.
 
-La continuación del proyecto viene después de la limpieza de datos que realizamos en el entregable pasado, el siguiente paso fue importar las librerías necesarias para utilizar los modelos de predicción que nos interesan, en el siguiente código se  evidencia:
+**K-Neighbors Classifier**: Utiliza el método de vecinos más cercanos para la clasificación. Las predicciones se basan en las clases de los ejemplos cercanos en el espacio de características. Requiere ajustar el número de vecinos y posiblemente otras métricas de distancia.
 
-Librerías para Modelos de clasificación:
+**SVC (Support Vector Classifier)**: Un clasificador que encuentra un hiperplano de separación óptimo entre clases. Puede usar diferentes funciones de kernel para transformar los datos en un espacio de mayor dimensión. Es útil para problemas de clasificación lineal y no lineal.
 
-K-Neighbors Classifier: Utiliza el método de vecinos más cercanos para la clasificación. Las predicciones se basan en las clases de los ejemplos cercanos en el espacio de características. Requiere ajustar el número de vecinos y posiblemente otras métricas de distancia.
+**Logistic Regression**: Realiza la clasificación utilizando la función logística para modelar la probabilidad de pertenencia a una clase. Es efectivo para problemas de clasificación binaria y multiclase cuando las clases son linealmente separables.
 
-SVC (Support Vector Classifier): Un clasificador que encuentra un hiperplano de separación óptimo entre clases. Puede usar diferentes funciones de kernel para transformar los datos en un espacio de mayor dimensión. Es útil para problemas de clasificación lineal y no lineal.
+**Decision Tree Classifier**: Construye un árbol de decisión que divide recursivamente el espacio de características en regiones más puras. Es fácilmente interpretable, pero puede ser propenso al sobreajuste si no se controla adecuadamente.
 
-Logistic Regression: Realiza la clasificación utilizando la función logística para modelar la probabilidad de pertenencia a una clase. Es efectivo para problemas de clasificación binaria y multiclase cuando las clases son linealmente separables.
+**Gaussian NB**: Implementa el clasificador Bayesiano Ingenuo Gaussiano, asumiendo que las características son independientes y distribuidas normalmente. A pesar de su simplicidad, puede funcionar sorprendentemente bien en muchos casos.
 
-Decision Tree Classifier: Construye un árbol de decisión que divide recursivamente el espacio de características en regiones más puras. Es fácilmente interpretable, pero puede ser propenso al sobreajuste si no se controla adecuadamente.
+**Random Forest Classifier**: Crea múltiples árboles de decisión y combina sus predicciones para mejorar la robustez y precisión del modelo. Puede manejar características categóricas y numéricas, y es menos propenso al sobreajuste que un solo árbol.
 
-Gaussian NB: Implementa el clasificador Bayesiano Ingenuo Gaussiano, asumiendo que las características son independientes y distribuidas normalmente. A pesar de su simplicidad, puede funcionar sorprendentemente bien en muchos casos.
+**Gradient Boosting Classifier**: Construye una secuencia de modelos que corrigen los errores del modelo anterior. Es útil para problemas de clasificación y regresión, y tiende a producir modelos de alta calidad.
 
-Random Forest Classifier: Crea múltiples árboles de decisión y combina sus predicciones para mejorar la robustez y precisión del modelo. Puede manejar características categóricas y numéricas, y es menos propenso al sobreajuste que un solo árbol.
-
-Gradient Boosting Classifier: Construye una secuencia de modelos que corrigen los errores del modelo anterior. Es útil para problemas de clasificación y regresión, y tiende a producir modelos de alta calidad.
-
-Decision Tree Classifier: Construye un árbol de decisión que divide recursivamente el espacio de características en regiones más puras. Es fácilmente interpretable, pero puede ser propenso al sobreajuste si no se controla adecuadamente.
+**Decision Tree Classifier**: Construye un árbol de decisión que divide recursivamente el espacio de características en regiones más puras. Es fácilmente interpretable, pero puede ser propenso al sobreajuste si no se controla adecuadamente.
 
 La librería cross_val_score se utiliza en la función que no hemos usado todavía en el proyecto para generalizar los análisis con gráficas y predicciones, así como se importa accuracy_score y metrics para obtener información de nuestros modelos y predicciones
 
 
 ## Etapa 2: Implementación de modelos
 
-Para cada modelo se realizaron diferentes pruebas: utilizando diferentes hiperparámetros y utilizando dos bases de datos diferentes: una en donde eliminamos los pasajeros que contienen datos nulos y otra en donde a través del algoritmo de K-vecinos predecimos los valores nulos para no eliminar dichos datos. Se siguió el siguiente procedimiento:
+Para cada modelo se realizaron diferentes pruebas utilizando diferentes hiperparámetros y utilizando dos bases de datos diferentes: una en donde eliminamos los pasajeros que contienen datos nulos y otra en donde a través del algoritmo de K-vecinos predecimos los valores nulos para no eliminar dichos datos. Se siguió el siguiente procedimiento:
 
 ![](https://github.com/Memo9494/baseMaterialTC3006_retogp01/blob/main/retro/Avances2_ProcesamientoModelos/Diagrama_Modelos.png)
 
-Fig 1. Metodología de pruebas
+<p align="center">Fig 1. Metodología de pruebas</p>
 
-Para cada prueba se ajustaron los hiper parámetros con el objetivo de conseguir los mejores hiper parámetros y tener una mejor predicción
+### Modelos utilizando base de datos sin los datos con valores nulos
 
-La siguiente función está diseñada para crear una meta-análisis de múltiples algoritmos para predecir la muerte de una persona en el titanic. Sin embargo, todavía no está implementada para usarla.
+Se determinaron pues las variables dependientes e independientes de la base de datos así como los datos de entrenamiento y los de testeo.
 
-
-```python
-#Función para implementar meta-algoritmo
-def modelfit(alg, dtrain, predictors, performCV=True, printFeatureImportance=True, cv_folds=5):
-#Fit the algorithm on the data
-alg.fit(dtrain[predictors], dtrain['Disbursed'])
-
-
-#Predict training set:
-dtrain_predictions = alg.predict(dtrain[predictors])
-dtrain_predprob = alg.predict_proba(dtrain[predictors])[:,1]
-
-
-#Perform cross-validation:
-if performCV:
-cv_score = cross_validation.cross_val_score(alg, dtrain[predictors], dtrain['Disbursed'], cv=cv_folds, scoring='roc_auc')
-
-
-#Print model report:
-print("\nModel Report")
-print("Accuracy : %.4g" % metrics.accuracy_score(dtrain['Disbursed'].values, dtrain_predictions))
-print("AUC Score (Train): %f" % metrics.roc_auc_score(dtrain['Disbursed'], dtrain_predprob))
-
-
-if performCV:
-print("CV Score : Mean - %.7g | Std - %.7g | Min - %.7g | Max - %.7g" % (np.mean(cv_score),np.std(cv_score),np.min(cv_score),np.max(cv_score)))
-
-
-#Print Feature Importance:
-if printFeatureImportance:
-feat_imp = pd.Series(alg.feature_importances_, predictors).sort_values(ascending=False)
-feat_imp.plot(kind='bar', title='Feature Importances')
-plt.ylabel('Feature Importance Score')
-```
-En la siguiente sección se realizará un análisis del dataset sin valores nulos:
-#Separamos tipos de variables en dependientes e independientes
-
-```python
-feature_names = ['Age', 'Sex', 'Pclass', 'Embarked', 'Fare']
-X_NonNull = df_NonNull[feature_names] # variables predictoras
-y_NonNull = df_NonNull['Survived'] # variable de respuesta
-#Se divide el dataset en entrenamiento y test, con un ratio de 80-20
-X_NonNull_train, X_NonNull_test, y_NonNull_train, y_NonNull_test = train_test_split(X_NonNull, y_NonNull, test_size=0.2, random_state=42, stratify=y_NonNull)
-```
-
-Después se crea un array de modelos el cuál tiene la función de almacenar los modelos para utilizar un ciclo para preparar, , entrenar y predecir cada uno de nuestros modelos que importamos, además se hace un análisis de precisión con la librería accuracy score
+Después se crea un array de modelos el cuál tiene la función de almacenar los modelos para utilizar un ciclo para preparar, entrenar y predecir cada uno de nuestros modelos que importamos, además se hace un análisis de precisión con la librería accuracy score.
 
 A continuación presentamos los scores de los modelos:
 
-## 0 KNN 0.643357 1 SVC 0.671329 2 LR 0.755245 3 DT 0.713287 4 GNB 0.755245 5 RF 0.769231 6 GB 0.783217 7 MLP 0.769231
+*   **K-Neighbors Classifier** - KNN :  0.643357
+*   **Support Vector Classifier** - SVC : 0.671329
+*   **Logistic Regression** - LR :  0.755245
+*   **Decision Tree Classifier** - DT : 0.713287
+*   **Gaussian NB** - GNB  0.755245
+*   **Random Forest Classifie** - RF  0.769231
+*   **Gradient Boosting Classifier** -  GB  0.783217
+*   **Multi-Layer Perceptron Classifier** -  MLP  0.762238
 
-Se puede apreciar que el modelo gradient boosting  fue el de mejor resultados entre los modelos probados, por lo que será uno de los modelos que utilizaremos para hacer nuestro análisis y predicción. Sin embargo, haremos algunos cambios en las parámetros para mejorar los resultados de la predicción.
+Se puede apreciar que los modelos con mejor precisión son: Gradient Boosting, Multi-Layer Perceptron y Decision Tree Classifier, por lo que serán uno de los modelos que se utilizaran para hacer el análisis y predicción. Sin embargo, haremos algunos cambios en las parámetros para mejorar los resultados de la predicción.
 
 A partir de aquí se realizaron los procedimientos mostrados en la imagen anterios para conseguir los mejores hyper parámetros para nuestros modelos seleccionados:
 Como se verá a continuación estos son Gradient Boosting, Xtreme Gradient Boosting y una red neuronal
