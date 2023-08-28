@@ -108,13 +108,15 @@ En específico, en Gradient Boosting tomamos los mejores hyperparámetros e hic�
 
 
 En las siguientes líneas se hizo el intento de mejorar los falsos positivos del modelo, pero no tuvimos éxito en mejorar el modelo
-
+```python
 # accuracy_score(y_test, y_pred)
 # #GB.predict_proba(X_test)
 # y_pred2 = (GB.predict_proba(X_test)[:,1] >= 0.45).astype(bool)
 # y_pred2 = y_pred2 * 1
 # print(y_pred2)
 # accuracy_score(y_test, y_pred2)
+```
+
 
 A continuación se aplicó el modelo de Xtreme Gradient Boosting, este hace un sistema de decisiones basado en un árbol de ramas, o k-tree. Este nos ofrece una variante del método de gradient boosting con una mejor solvencia computacional, ya que es más eficiente que el ya mencionado debido a que realiza computación en paralelo.
 
