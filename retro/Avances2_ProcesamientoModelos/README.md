@@ -7,7 +7,7 @@ En este documento, se presenta el proceso seguido en el proyecto, centrándose e
 Entre estos modelos, se tiene la intención de seleccionar sólo tres modelos, por lo que se realizó un proceso para seleccionar el modelo que será explicado en el documento, así mismo se documentó el proceso para la preparación de datos para cada modelo, así como la separación del dataset para entrenar y predecir. A continuación se describe el proceso de la selección e implementación de los modelos.
 
 
-## Etapa 1: Selección, configuración y entrenamiento del modelo
+## Etapa 1: Investigación de modelos
 
 Se importan las librerías para implementar los modelos
 
@@ -34,7 +34,7 @@ Decision Tree Classifier: Construye un árbol de decisión que divide recursivam
 La librería cross_val_score se utiliza en la función que no hemos usado todavía en el proyecto para generalizar los análisis con gráficas y predicciones, así como se importa accuracy_score y metrics para obtener información de nuestros modelos y predicciones
 
 
-## Implementación de modelos
+## Etapa 2: Implementación de modelos
 
 Para cada modelo se realizaron diferentes pruebas: utilizando diferentes hiperparámetros y utilizando dos bases de datos diferentes: una en donde eliminamos los pasajeros que contienen datos nulos y otra en donde a través del algoritmo de K-vecinos predecimos los valores nulos para no eliminar dichos datos. Se siguió el siguiente procedimiento:
 
