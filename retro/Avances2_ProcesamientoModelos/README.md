@@ -38,7 +38,7 @@ La librería cross_val_score se utiliza en la función que no hemos usado todav�
 
 Para cada modelo se realizaron diferentes pruebas: utilizando diferentes hiperparámetros y utilizando dos bases de datos diferentes: una en donde eliminamos los pasajeros que contienen datos nulos y otra en donde a través del algoritmo de K-vecinos predecimos los valores nulos para no eliminar dichos datos. Se siguió el siguiente procedimiento:
 
-## IMAGENNN FRIDADAA
+![](https://github.com/Memo9494/baseMaterialTC3006_retogp01/blob/main/retro/Avances2_ProcesamientoModelos/Diagrama_Modelos.png)
 
 Fig 1. Metodología de pruebas
 
