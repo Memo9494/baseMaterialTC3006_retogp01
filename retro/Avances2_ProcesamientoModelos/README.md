@@ -27,6 +27,8 @@ La continuación del proyecto viene después de la limpieza de datos que se real
 
 **Decision Tree Classifier**: Construye un árbol de decisión que divide recursivamente el espacio de características en regiones más puras. Es fácilmente interpretable, pero puede ser propenso al sobreajuste si no se controla adecuadamente.
 
+**Multi-layer Perceptron Classifier (MLP)**: Este clasificador implementa el algoritmo de aprendizaje profundo supervisado  MLP que se entrena mediante el método de retropropagación (backpropagation) está compuesto por múltiples capas de neuronas: capas de entrada, capas ocultas y capas de salida, cada una conectada a través de conexiones ponderadas (Neural network models (supervised), s. f.). Se escogió este modelo para realizar la predicción de los decesos en el titanic debido a su popularidad actual en la sociedad, puesto que este modelo es la base de las nuevas tecnologías que estamos usando como la nueva 
+
 La librería cross_val_score se utiliza en la función que no hemos usado todavía en el proyecto para generalizar los análisis con gráficas y predicciones, así como se importa accuracy_score y metrics para obtener información de nuestros modelos y predicciones
 
 
@@ -38,7 +40,7 @@ Para cada modelo se realizaron diferentes pruebas utilizando diferentes hiperpar
 
 <p align="center">Fig 1. Metodología de pruebas</p>
 
-### Modelos utilizando base de datos sin los datos con valores nulos
+### Verificar los mejores modelos
 
 Se determinaron pues las variables dependientes e independientes de la base de datos así como los datos de entrenamiento y los de testeo.
 
@@ -55,66 +57,24 @@ A continuación presentamos los scores de los modelos:
 *   **Gradient Boosting Classifier** -  GB  0.783217
 *   **Multi-Layer Perceptron Classifier** -  MLP  0.762238
 
-Se puede apreciar que los modelos con mejor precisión son: Gradient Boosting, Multi-Layer Perceptron y Decision Tree Classifier, por lo que serán uno de los modelos que se utilizaran para hacer el análisis y predicción. Sin embargo, haremos algunos cambios en las parámetros para mejorar los resultados de la predicción.
+Se puede apreciar que los modelos con mejor precisión son: Gradient Boosting, Multi-Layer Perceptron y Decision Tree Classifier, por lo que serán uno de los modelos que se utilizaran para hacer el análisis y predicción. Sin embargo, se harán algunos cambios en las parámetros para mejorar los resultados de la predicción.
 
-A partir de aquí se realizaron los procedimientos mostrados en la imagen anterios para conseguir los mejores hyper parámetros para nuestros modelos seleccionados:
-Como se verá a continuación estos son Gradient Boosting, Xtreme Gradient Boosting y una red neuronal
+### Pruebas
+
+Una vez determinados los mejores modelos, se realizaron tres pruebas por modelo de aprendizaje para cada base de datos.
+
+A continuación se presentan los mejores resultados de precisión obtenidos en cada modelo:
+
+|  | Eliminando los valores nulos  | Preservando los valores nulos |
+| ------------- | ------------- | ------------- |
+| Gradient Boosting  | 0.82 | 0.78 |
+| Xtreme Gradient Boosting  | 0.84  | 0.80  |
+| Multi-Layer Perceptron  | 0.76  | 0.79  |
+| Decision Tree | 0.82  | 0.84  |
 
 En específico, en Gradient Boosting tomamos los mejores hyperparámetros e hicímos un análisis de significancia de las variables como input, y nos entregó la siguiente gráfica, este nos dá a entender que no necesitamos la variable de enbarking, ya que no parece tener relación con el resultado de decesos.
 
-### DRIFAAA OTRA IMAGEN
-
-
-En las siguientes líneas se hizo el intento de mejorar los falsos positivos del modelo, pero no tuvimos éxito en mejorar el modelo
-```python
-# accuracy_score(y_test, y_pred)
-# #GB.predict_proba(X_test)
-# y_pred2 = (GB.predict_proba(X_test)[:,1] >= 0.45).astype(bool)
-# y_pred2 = y_pred2 * 1
-# print(y_pred2)
-# accuracy_score(y_test, y_pred2)
-```
-
-
-A continuación se aplicó el modelo de Xtreme Gradient Boosting, este hace un sistema de decisiones basado en un árbol de ramas, o k-tree. Este nos ofrece una variante del método de gradient boosting con una mejor solvencia computacional, ya que es más eficiente que el ya mencionado debido a que realiza computación en paralelo.
-
-```python
-xGB = xgb.XGBClassifier(learning_rate = 0.1, subsample = 0.2, min_child_weight = 2, reg_alpha = 1.5)
-xGB.fit(X_NonNull_train, y_NonNull_train)
-y_NonNull_pred = xGB.predict(X_NonNull_test)
-confusion_matrix = metrics.confusion_matrix(y_NonNull_test, y_NonNull_pred)
-accuracy = (confusion_matrix[0,0] + confusion_matrix[1,1]) / (confusion_matrix[0,0]+confusion_matrix[0,1]+confusion_matrix[1,0]+confusion_matrix[1,1])
-
-```
-
-Y se puede apreciar como subieron las métricas de precisión y exactitud en la predicción de resultados.
-## Accuracy: 0.8391608391608392 Precision: 0.8522727272727273 Recall: 0.8823529411764706 Fone: 0.8670520231213872
-
-Implementación de red neuronal -  Multi-layer Perceptron Classifier (MLP)
-Este clasificador implementa el algoritmo de aprendizaje profundo supervisado  MLP que se entrena mediante el método de retropropagación (backpropagation) está compuesto por múltiples capas de neuronas: capas de entrada, capas ocultas y capas de salida, cada una conectada a través de conexiones ponderadas (Neural network models (supervised), s. f.). Se escogió este modelo para realizar la predicción de los decesos en el titanic debido a su popularidad actual en la sociedad, puesto que este modelo es la base de las nuevas tecnologías que estamos usando como la nueva 
-
-Para realizar la implementación:
-
-```python
-#Se crea una variable de red neuronal para clasificación, con parámetros de 100 capas ocultas y una iteración máxima de 10000
-mlp_model = MLPClassifier(hidden_layer_sizes=(100, 50), max_iter=1000) # Capas y Parámetros
-#Se ajustan los datos
-mlp_model.fit(X_NonNull_train, y_NonNull_train)
-#Se calcula una puntuación de la red neuronal
-mlp_score = mlp_model.score(X_NonNull_test, y_NonNull_test)
-```
-Y se obtuvo un score de MLP Score: 0.7342657342657343
-
-
-
-Se crea una variable para regularizar los datos con DesicionTreeClasifier con parámetros de las capas de la red neuronal.
-
-```python
-egularized_tree = DecisionTreeClassifier(max_depth=5, min_samples_split=5) # Configura los parámetros
-#Se ajustan los datos
-regularized_tree.fit(X_NonNull_train, y_NonNull_train)
-regularized_tree_score = regularized_tree.score(X_NonNull_test, y_NonNull_test)
-```
+Vemos que los resultados son diferentes de acuerdo con la base de datos utilizada, sin embargo no se ve un patrón preciso que determine que una base es mejor que otra, solamente que en la mayoría de los modelos la base de datos en la que se preservan los datos con valores nulos predichos la precisión de los modelos es mayor. Así mismo se puede notar que el clasificador de árbol de decisión es el que tiene mayor precisión.
 
 
 ## Conclusión 
@@ -124,8 +84,6 @@ A lo largo de esta entrega, se ha llevado acabo un proceso exhaustivo de selecci
 Entre el conjunto de los modelos analizados, destacaron dos enfoques particulares: el algoritmo Xtreme Gradient Boosting (XGBoost) y el uso de redes neuronales a través del Multi-Layer Perceptron Classifier (MLP). Ambos métodos demostraron resultados prometedores en términos de precisión, recall y F1-Score. El algoritmo XGBoost, que implementa un sistema de decisiones basado en árboles, se resaltó por su capacidad para manejar conjuntos de datos complejos y generar predicciones precisas.En contraste, la red neuronal MLP mostró una capacidad para aprender patrones en los datos y adaptarse a relaciones no lineales, lo que contribuyó a su alto rendimiento.
 
 Es importante mencionar que, los mejores rendimientos encontrados en los modelos fueron extremadamente mejores cuando se trabajó con los datos que no contenían valores nulos. La eliminación de registros con datos faltantes permitió a los modelos centrarse en relaciones significativas en los datos disponibles y generar predicciones más precisas. Así mismo, se experimentó con diferentes valores de hiper-parámetros y técnicas de regularización. Las iteraciones constantes permitieron identificar combinaciones óptimas que maximizaron la precisión y la generalización de los modelos.
-
-
 
 
 ## Referencias
