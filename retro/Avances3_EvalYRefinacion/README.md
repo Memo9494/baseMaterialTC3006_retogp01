@@ -27,3 +27,21 @@ Primeramente implementamos una variedad de modelos, provenientes de la librería
 - Multi-layer Perceptron Classifier (MLP)
 
 De estos nueve modelos los seleccionados para ser mejorados fueron Gradient Boosting, MLP, y Decision Tree, adicionalmente se añadió el modelo Extreme Gradient Boosting de la librería xgboost ya que es una versión más poderosa del gradient boosting.
+
+La exactitud de cada modelo ates de hacer cambios se puede ver a continuación:
+
+|  | Eliminando los valores nulos  | Preservando los valores nulos |
+| ------------- | ------------- | ------------- |
+| Gradient Boosting  | 0.78 | 0.80 |
+| Xtreme Gradient Boosting  | 0.80  | 0.81  |
+| Multi-Layer Perceptron  | 0.74  | 0.78  |
+| Decision Tree | 0.71  | 0.81  |
+
+Una vez hecho el ajuste de híper parámetros podemos ver las siguientes mejoras:
+
+|  | Eliminando los valores nulos  | Preservando los valores nulos |
+| ------------- | ------------- | ------------- |
+| Gradient Boosting  | 0.82 | 0.78 |
+| Xtreme Gradient Boosting  | 0.84  | 0.81  |
+| Multi-Layer Perceptron  | 0.76  | 0.79  |
+| Decision Tree | 0.82  | 0.85  |
