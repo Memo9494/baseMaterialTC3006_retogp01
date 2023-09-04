@@ -4,10 +4,26 @@
 
 En este reporte será detallado nuestro proceso para separar la base de datos en dos partes distintas, una para el entrenamiento de nuestro modelo y una para hacer las pruebas. También se justificarán las modificaciones hechas a la base de datos y las variables seleccionadas. Finalmente compararemos los resulatados obtenidos por los diferentes modelos y los cambios que hicimos para refinarlos y mejorar su rendimiento.
 
+## Selección de variables
+
+Para elegir qué variables serían utilizadas para el modelo se generó un diagrama de correlación, con el cual pudimos ver qué variables estaban más ligadas a la supervivencia, con este se seleccionaron las siguientes variables: 'Age', 'Sex', 'Pclass', 'Embarked' y 'Fare'. 'Survived' fue designada como nuestra variable de respuesta. Un conflicto con el que nos encontramos fueron los datos faltantes de la variable de edad, de todas las variables que seleccionamos solamente 'Age' tenía una alta cantidad de datos faltantes. Consideramos esta como una variable importante así que no sabíamos de qué forma proceder. Finalmente decidimos lo siguiente, utilizamos dos copias de nuestra base de datos, a una se le eliminaron todos los valores nulos, en la otra se preservaron estos datos faltantes, utilizamos los mismos modelos con estas dos bases para comparar los resultados y ver cuál nos daba mejores predicciones.
+
 ## Separación de los datos
 
 Para dividir nuestra base de datos en dos se uso la función 'train_test_split()', proveniente de la librería 'sklearn'. Esta función nos permite hacer esta división facilmente y siguiendo los parámetros deseados. En nuestro caso decidimos usar un ratio de 80-20 en nuestro split, en otras palabras, el 80% de nuestros datos fueron utilizados para entrenar el modelo y los restantes para verificar los resultados de sus predicciones. También se utilizó el parámetro 'stratify' de la función para asegurarse que nuestros dos datasets tuvieran aproximadamente el mismo ratio de sobrevivientes y así tener resultados más representativos.
 
-## Selección de variables
-Para elegir qué variables serían utilizadas para el modelo se generó un diagrama de correlación, con el cual pudimos ver qué variables estaban más ligadas a la supervivencia, con este se seleccionaron las siguientes variables: 'Age', 'Sex', 'Pclass', 'Embarked' y 'Fare'. 'Survived' fue designada como nuestra variable de respuesta. Un conflicto con el que nos encontramos fueron los datos faltantes de la variable de edad, de todas las variables que seleccionamos solamente 'Age' tenía una alta cantidad de datos faltantes. Consideramos esta como una variable importante así que no sabíamos de qué forma proceder. Finalmente decidimos lo siguiente, utilizamos dos copias de nuestra base de datos, a una se le eliminaron todos los valores nulos, en la otra se preservaron estos datos faltantes, utilizamos los mismos modelos con estas dos bases para comparar los resultados y ver cuál nos daba mejores predicciones.
+## Implementación de modelos
 
+Primeramente implementamos una variedad de modelos, provenientes de la librería sklearn, con el objetivo de tener una idea general del rendimiento de cada modelo y de ahí seleccionar los mejores para hacer un ajuste de híper parámetros y conseguir sus mejores resultados. En esta primera etapa se usaron los siguientes modelos:
+
+- K-Neighbors Classifier
+- SVC (Support Vector Classifier)
+- Logistic Regression
+- Decision Tree Classifier
+- Gaussian NB
+- Random Forest Classifier
+- Gradient Boosting Classifier
+- Decision Tree Classifier
+- Multi-layer Perceptron Classifier (MLP)
+
+De estos nueve modelos los seleccionados para ser mejorados fueron Gradient Boosting, MLP, y Decision Tree, adicionalmente se añadió el modelo Extreme Gradient Boosting de la librería xgboost ya que es una versión más poderosa del gradient boosting.
