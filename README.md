@@ -18,6 +18,14 @@ The root folder of this repository contains the following files and folders:
 
 ## Files for revision
 Following is a list of the files that must be checked for grading each subcompetency: 
+* *final*
+	* *interfaz*
+		* README.md :Final Desctiption of the interfaz code.  
+	* AI1_v2.ipynb : Final Code for the cleancing and prediction of the dataset and some statistical analizys.  
+	* data_titanic.csv : Dataset of the passengers on board the Titanic.
+
+
+Following is a list of the files that must be checked for grading each subcompetency: 
 * *retro*
 	* *Avances2_ProcesamientoModelos*
 		* README.md : Justification related to the changes and desicions made over the dataset.  

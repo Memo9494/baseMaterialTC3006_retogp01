@@ -1,4 +1,18 @@
-# Demo file for the folder with the final version of each deliverable
-In this file, you should describe the content of the folder. For example, in this case, we could state that:
+# Carpeta final
 
-This folder contains the final files that must be graded for each deliverable. The folder is organized into subfolders, one for each deliverable.
+Esta carpeta contiene en su interior las entregas finales del bloque de Inteligencia Artificial en el apartado del reto
+
+## Estructura de Carpetas
+
+- `interfaz/`: En esta carpeta se encuentra el código y la documentación de la interfaz del proyecto del Titanic.
+
+## Archivos
+
+- `AI.ipynb`: Este archivo contiene el procedimiento detallado de la solución al reto del Titanic.
+
+## Instrucciones de Uso
+
+1. Abre el archivo `AI.ipynb` para ver el procedimiento detallado de la solución.
+2. Dirígete a la carpeta `interfaz/` para acceder al código y la documentación de la interfaz del proyecto.
+
+¡Esperamos que encuentres esta información útil!
