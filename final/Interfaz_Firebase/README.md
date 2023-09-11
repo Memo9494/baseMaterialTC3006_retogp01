@@ -1,10 +1,5 @@
-# Carpeta final
-
-Esta carpeta contiene en su interior las entregas finales del bloque de Inteligencia Artificial en el apartado del reto
-
-## Estructura de Carpetas
-
-- `interfaz/`: En esta carpeta se encuentra el código y la documentación de la interfaz del proyecto del Titanic.
+# Interfaz
+Esta carpeta contiene la aplicación móvil así como la conexión con la base de datos de Firebase.
 
 ## Archivos
 
