@@ -4,7 +4,7 @@ Esta carpeta contiene en su interior las entregas finales del bloque de Intelige
 
 ## Estructura de Carpetas
 
-- `interfaz/`: En esta carpeta se encuentra el código y la documentación de la interfaz del proyecto del Titanic.
+- `Interfaz_Firebase/`: En esta carpeta se encuentra el código y la documentación de la interfaz del proyecto del Titanic.
 
 ## Archivos
 
