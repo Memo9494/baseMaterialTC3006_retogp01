@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "author": "Frida Cano Falcón",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-breadboard-mini", "id": "bb1", "top": 94.6, "left": 160.8, "attrs": {} },
+    {
+      "type": "wokwi-esp32-devkit-v1",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20230426-v1.20.0" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 128.75,
+      "left": 182.4,
+      "attrs": { "value": "4000" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -94.18, "left": 198.34, "attrs": {} },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd1",
+      "top": -41.6,
+      "left": 389.6,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:D4", "bb1:2t.c", "green", [ "h48.89", "v1.49" ] ],
+    [ "bb1:1b.f", "bb1:1t.e", "black", [ "v0" ] ],
+    [ "esp:GND.1", "bb1:1b.i", "black", [ "h55.97", "v53.48" ] ],
+    [ "esp:3V3", "bb1:8t.e", "red", [ "v1.55", "h52.11", "v71.99", "h87.42" ] ],
+    [ "bb1:3t.b", "bb1:8t.b", "red", [ "v0" ] ],
+    [ "bb1:2t.a", "dht1:SDA", "green", [ "v-72.18", "h40.44" ] ],
+    [ "bb1:3t.a", "dht1:VCC", "red", [ "v-64.79", "h21.34" ] ],
+    [ "bb1:1t.a", "dht1:GND", "black", [ "v-31.12", "h66", "v-1.64" ] ],
+    [ "r2:1", "bb1:2t.d", "", [ "$bb" ] ],
+    [ "r2:2", "bb1:8t.d", "", [ "$bb" ] ],
+    [ "lcd1:GND", "bb1:1b.j", "black", [ "h-36.9", "v274.78", "h-184.93", "v1.82" ] ],
+    [ "esp:VIN", "lcd1:VCC", "red", [ "h-11", "v114.76", "h374.39", "v-272.17" ] ],
+    [ "esp:D22", "lcd1:SCL", "gold", [ "h65.99", "v-150.52", "h178.01", "v139.8" ] ],
+    [ "lcd1:SDA", "esp:D21", "blue", [ "h-58.79", "v-141.86", "h-184.42", "v12.94" ] ]
+  ],
+  "dependencies": {}
+}
