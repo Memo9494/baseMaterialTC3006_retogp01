@@ -9,6 +9,8 @@ Esta carpeta contiene en su interior las entregas finales del bloque de Intelige
 ## Archivos
 
 - `AI.ipynb`: Este archivo contiene el procedimiento detallado de la solución al reto del Titanic.
+- `Documentacion_Final_Reto_Interfaz.pdf`: Reporte con análisis detallado del reto.
+
 
 ## Instrucciones de Uso
 
